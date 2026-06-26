@@ -443,3 +443,49 @@ label.field-label {
 }
 .phase-body { flex: 1; }
 .phase:has(input:checked) .phase-num { background: var(--brass); color: var(--white-warm); border-color: var(--brass); }
+
+/* — Weekly Brief: 7-day lunar calendar strip — */
+.cal-card { overflow: hidden; }
+.cal-strip {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+.cal-cell {
+  background: var(--cream-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0.5rem 0.25rem 0.55rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  min-width: 0;
+}
+.cal-cell-lunar { border-color: var(--brass); background: #F3EBE0; }
+.cal-dow { font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--charcoal-3); }
+.cal-date { font-family: var(--serif); font-size: 1.1rem; color: var(--charcoal); line-height: 1; }
+.cal-moon { margin: 0.15rem 0; }
+.cal-phase { font-size: 0.52rem; color: var(--charcoal-2); line-height: 1.2; }
+.cal-sign { font-size: 0.52rem; color: var(--brass-deep); letter-spacing: 0.02em; }
+.cal-flag {
+  margin-top: 0.2rem;
+  font-size: 0.48rem; text-transform: uppercase; letter-spacing: 0.08em;
+  background: var(--brass); color: var(--white-warm);
+  padding: 0.1rem 0.3rem; border-radius: 10px;
+}
+/* On narrow phones, let the strip scroll rather than crush 7 columns */
+@media (max-width: 560px) {
+  .cal-strip {
+    grid-template-columns: repeat(7, minmax(64px, 1fr));
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.4rem;
+  }
+}
+@media print {
+  .cal-strip { grid-template-columns: repeat(7, 1fr); overflow: visible; }
+  .cal-cell { background: #fff; }
+}
