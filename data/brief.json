@@ -4,6 +4,15 @@
   "energyTone": "Harvest",
   "toneNote": "Full Moon week. Receive, complete, integrate — then rest. This is a culmination, not a launch.",
   "quarterTheme": "Personal Year 1 · Identity reset, planting seeds. Do not rush to harvest the wrong thing.",
+  "days": [
+    { "dow": "Sun", "date": "28", "phase": "Waxing gibbous", "sign": "Sagittarius", "flag": "" },
+    { "dow": "Mon", "date": "29", "phase": "Full Moon", "sign": "Capricorn", "flag": "Full Moon" },
+    { "dow": "Tue", "date": "30", "phase": "Waning gibbous", "sign": "Capricorn", "flag": "Office" },
+    { "dow": "Wed", "date": "1", "phase": "Waning gibbous", "sign": "Aquarius", "flag": "" },
+    { "dow": "Thu", "date": "2", "phase": "Waning gibbous", "sign": "Aquarius", "flag": "Office" },
+    { "dow": "Fri", "date": "3", "phase": "Waning gibbous", "sign": "Pisces", "flag": "Shoot" },
+    { "dow": "Sat", "date": "4", "phase": "Last quarter approaching", "sign": "Pisces", "flag": "" }
+  ],
   "lunar": {
     "event": "Full Moon in Capricorn — Mon June 29, 7:57pm EDT (8°14′ Capricorn)",
     "sign": "Moon waxes gibbous through Sagittarius into Capricorn, peaks Mon, then wanes through Aquarius–Pisces toward week's end",
