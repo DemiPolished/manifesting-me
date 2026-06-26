@@ -1,0 +1,445 @@
+/* ============================================================
+   MANIFESTING ME — Restoration Hardware aesthetic foundation
+   Warm limestone cream · aged brass · linen · soft charcoal
+   She is already her. This confirms it.
+   ============================================================ */
+
+:root {
+  /* — Palette — */
+  --cream:        #F4EFE6;  /* limestone cream — base canvas */
+  --cream-soft:   #EFE8DB;  /* slightly deeper cream for cards */
+  --linen:        #E8E0D2;  /* linen texture base */
+  --taupe:        #C9BBA6;  /* warm taupe */
+  --taupe-deep:   #A8997F;  /* deep warm taupe — borders, muted */
+  --brass:        #A6843C;  /* aged brass / gold accent */
+  --brass-soft:   #BE9D5A;  /* lighter brass for hovers */
+  --brass-deep:   #8A6B2E;  /* deep brass — pressed */
+  --charcoal:     #3A352E;  /* soft charcoal text (never pure black) */
+  --charcoal-2:   #5C554A;  /* secondary text */
+  --charcoal-3:   #847C6E;  /* tertiary / captions */
+  --white-warm:   #FBF8F2;  /* warm white surface */
+  --line:         #D8CDB9;  /* hairline rule */
+  --success:      #6E7A53;  /* sage green — completed state */
+  --shadow:       rgba(58, 53, 46, 0.08);
+  --shadow-soft:  rgba(58, 53, 46, 0.05);
+
+  /* — Type — */
+  --serif: 'Cormorant Garamond', 'Cormorant', Georgia, 'Times New Roman', serif;
+  --sans:  'Jost', 'Century Gothic', 'Futura', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* — Rhythm — */
+  --pad:    1.5rem;
+  --radius: 3px;       /* almost square — nothing bubbly */
+  --gap:    1.25rem;
+  --maxw:   860px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: var(--sans);
+  background-color: var(--cream);
+  /* subtle linen weave */
+  background-image:
+    repeating-linear-gradient(0deg, rgba(168,153,127,0.025) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgba(168,153,127,0.025) 0 1px, transparent 1px 3px);
+  color: var(--charcoal);
+  font-size: 16px;
+  line-height: 1.65;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+  padding-bottom: 76px; /* room for bottom tab bar */
+  min-height: 100vh;
+}
+
+/* — Headings — */
+h1, h2, h3, h4 {
+  font-family: var(--serif);
+  font-weight: 500;
+  color: var(--charcoal);
+  letter-spacing: 0.005em;
+  line-height: 1.15;
+}
+h1 { font-size: 2.6rem; }
+h2 { font-size: 1.9rem; }
+h3 { font-size: 1.4rem; }
+h4 { font-size: 1.15rem; font-weight: 600; }
+
+.eyebrow {
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.32em;
+  color: var(--brass);
+  font-weight: 500;
+  margin-bottom: 0.4rem;
+  display: block;
+}
+
+a { color: var(--brass-deep); text-decoration: none; }
+a:hover { color: var(--brass); }
+
+/* — Layout shell — */
+.app { max-width: var(--maxw); margin: 0 auto; padding: 0 1.25rem; }
+
+.view { display: none; animation: fade 0.4s ease; padding: 1.5rem 0 2rem; }
+.view.active { display: block; }
+
+@keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* — Masthead — */
+.masthead {
+  text-align: center;
+  padding: 2rem 0 1.25rem;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 1.5rem;
+}
+.masthead .wordmark {
+  font-family: var(--serif);
+  font-size: 1.75rem;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+}
+.masthead .tagline {
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.38em;
+  color: var(--brass);
+  margin-top: 0.35rem;
+}
+
+/* — Card — */
+.card {
+  background: var(--white-warm);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: var(--pad);
+  margin-bottom: var(--gap);
+  box-shadow: 0 1px 3px var(--shadow-soft);
+}
+.card-title {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+.card .card-sub { color: var(--charcoal-3); font-size: 0.85rem; margin-bottom: 1rem; }
+
+.brass-rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--brass) 20%, var(--brass) 80%, transparent);
+  border: none;
+  margin: 1.25rem 0;
+  opacity: 0.5;
+}
+
+/* — Checkable action items — */
+.action {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--line);
+  cursor: pointer;
+  transition: opacity 0.25s;
+}
+.action:last-child { border-bottom: none; }
+.action input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 19px; height: 19px;
+  min-width: 19px;
+  margin-top: 3px;
+  border: 1.5px solid var(--taupe-deep);
+  border-radius: 2px;
+  background: var(--white-warm);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s;
+}
+.action input[type="checkbox"]:checked {
+  background: var(--brass);
+  border-color: var(--brass);
+}
+.action input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  left: 5px; top: 1px;
+  width: 5px; height: 10px;
+  border: solid var(--white-warm);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.action label { cursor: pointer; flex: 1; font-size: 0.95rem; line-height: 1.5; }
+.action input:checked + label { color: var(--charcoal-3); text-decoration: line-through; text-decoration-color: var(--taupe); }
+
+/* — Inputs — */
+input[type="text"], input[type="number"], input[type="date"], textarea, select {
+  width: 100%;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  color: var(--charcoal);
+  background: var(--cream-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0.65rem 0.8rem;
+  margin-bottom: 0.75rem;
+  transition: border-color 0.2s;
+}
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--brass);
+  background: var(--white-warm);
+}
+textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
+label.field-label {
+  display: block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--charcoal-3);
+  margin-bottom: 0.35rem;
+  font-weight: 500;
+}
+
+/* — Buttons — */
+.btn {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  background: var(--brass);
+  color: var(--white-warm);
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.65rem 1.4rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-weight: 500;
+}
+.btn:hover { background: var(--brass-deep); }
+.btn.ghost { background: transparent; color: var(--brass-deep); border: 1px solid var(--brass); }
+.btn.ghost:hover { background: var(--cream-soft); }
+
+/* — Progress ring — */
+.ring-wrap { display: inline-flex; flex-direction: column; align-items: center; gap: 0.3rem; }
+.ring { transform: rotate(-90deg); }
+.ring circle { fill: none; stroke-width: 5; }
+.ring .track { stroke: var(--line); }
+.ring .fill { stroke: var(--brass); stroke-linecap: round; transition: stroke-dashoffset 0.6s ease; }
+.ring-label { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--charcoal-3); }
+
+/* — Progress bar — */
+.bar-track { height: 8px; background: var(--line); border-radius: 4px; overflow: hidden; margin: 0.4rem 0; }
+.bar-fill { height: 100%; background: linear-gradient(90deg, var(--brass-soft), var(--brass)); border-radius: 4px; transition: width 0.6s ease; }
+
+/* — Pills / tags — */
+.pill {
+  display: inline-block;
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  padding: 0.22rem 0.6rem;
+  border-radius: 20px;
+  background: var(--cream-soft);
+  border: 1px solid var(--line);
+  color: var(--charcoal-2);
+  font-weight: 500;
+}
+.pill.brass { background: var(--brass); color: var(--white-warm); border-color: var(--brass); }
+.pill.sage { background: var(--success); color: var(--white-warm); border-color: var(--success); }
+.pill.muted { color: var(--charcoal-3); }
+
+/* — Grids — */
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--gap); }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap); }
+@media (max-width: 640px) {
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+}
+
+/* — Note / callout — */
+.note {
+  background: var(--cream-soft);
+  border-left: 2px solid var(--brass);
+  padding: 0.9rem 1.1rem;
+  font-size: 0.9rem;
+  color: var(--charcoal-2);
+  margin: 1rem 0;
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+.note .note-label {
+  font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.2em;
+  color: var(--brass); display: block; margin-bottom: 0.3rem; font-weight: 600;
+}
+
+.mantra {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.5rem;
+  text-align: center;
+  color: var(--charcoal);
+  line-height: 1.4;
+  padding: 1.5rem 1rem;
+}
+
+/* — Collapsible — */
+.collapsible > .collapse-head {
+  cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+}
+.collapse-head .chev { transition: transform 0.25s; color: var(--brass); }
+.collapsible.open .collapse-head .chev { transform: rotate(90deg); }
+.collapse-body { display: none; padding-top: 1rem; }
+.collapsible.open .collapse-body { display: block; }
+
+/* ============================================================
+   BOTTOM TAB BAR
+   ============================================================ */
+.tabbar {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  height: 64px;
+  background: var(--white-warm);
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 100;
+  box-shadow: 0 -2px 10px var(--shadow-soft);
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+.tab {
+  flex: 1;
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  background: none; border: none; cursor: pointer;
+  color: var(--charcoal-3);
+  padding: 4px 0;
+  transition: color 0.2s;
+}
+.tab svg { width: 21px; height: 21px; stroke: currentColor; fill: none; stroke-width: 1.4; }
+.tab .tab-label { font-size: 0.56rem; text-transform: uppercase; letter-spacing: 0.08em; }
+.tab.active { color: var(--brass); }
+.tab.active .tab-label { color: var(--brass-deep); }
+
+/* ============================================================
+   PASSWORD GATE
+   ============================================================ */
+.gate {
+  position: fixed; inset: 0;
+  background: var(--cream);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  z-index: 1000;
+  padding: 2rem;
+  text-align: center;
+}
+.gate .gate-mark { font-family: var(--serif); font-size: 2.4rem; letter-spacing: 0.04em; }
+.gate .gate-tag { font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.36em; color: var(--brass); margin: 0.5rem 0 2rem; }
+.gate input { max-width: 280px; text-align: center; letter-spacing: 0.1em; margin-bottom: 1rem; }
+.gate .gate-err { color: #9C5A3C; font-size: 0.85rem; min-height: 1.2rem; }
+.gate-hidden { display: none !important; }
+
+/* ============================================================
+   PRINT — A5, 148mm × 210mm, 12mm margins
+   ============================================================ */
+@media print {
+  @page { size: 148mm 210mm; margin: 12mm; }
+  body {
+    background: #fff !important;
+    background-image: none !important;
+    padding: 0 !important;
+    font-size: 10pt;
+    line-height: 1.4;
+    color: #000;
+  }
+  .tabbar, .gate, .btn, .tab, input[type="text"]:not([data-print]), textarea:not([data-print]) { display: none !important; }
+  .app { max-width: 100%; padding: 0; }
+  .view { display: block !important; page-break-before: always; padding: 0; }
+  .view:first-of-type { page-break-before: avoid; }
+  .card { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; }
+  h1 { font-size: 18pt; } h2 { font-size: 15pt; } h3 { font-size: 13pt; } h4 { font-size: 11pt; }
+  .mantra { font-size: 14pt; }
+  .action { page-break-inside: avoid; }
+  .print-only { display: block !important; }
+  .no-print { display: none !important; }
+}
+.print-only { display: none; }
+
+/* — Lab markers grid (Health) — */
+.lab-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+@media (min-width: 560px) { .lab-grid { grid-template-columns: repeat(4, 1fr); } }
+.lab {
+  background: var(--cream-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0.75rem 0.8rem;
+  text-align: center;
+}
+.lab-name { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--charcoal-3); }
+.lab-val { font-family: var(--serif); font-size: 1.55rem; color: var(--charcoal); line-height: 1.1; margin: 0.15rem 0; }
+.lab-val span { font-size: 0.7rem; color: var(--charcoal-3); }
+.lab-tag { font-size: 0.56rem !important; letter-spacing: 0.08em; padding: 0.18rem 0.45rem !important; }
+
+/* — Authentic Money Code pills (Abundance) — */
+.code-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.6rem; }
+@media (max-width: 480px) { .code-grid { grid-template-columns: 1fr; } }
+.code-pill {
+  background: var(--cream-soft);
+  border: 1px solid var(--brass);
+  border-radius: var(--radius);
+  padding: 0.7rem 0.85rem;
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: var(--charcoal);
+  text-align: center;
+}
+.goal { margin-bottom: 0.25rem; }
+
+/* — Business: ventures, hard rule, content calendar — */
+.venture-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
+.inline-action {
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-size: 0.95rem !important;
+  color: var(--charcoal) !important;
+  width: 100%;
+}
+.inline-action:focus { background: var(--cream-soft) !important; border-radius: 2px; }
+.action input:checked + label .inline-action { color: var(--charcoal-3) !important; text-decoration: line-through; }
+
+.hard-rule {
+  background: #F3EBE0;
+  border: 1px solid var(--brass);
+  border-left: 3px solid var(--brass);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 0.9rem 1.1rem;
+  font-size: 0.88rem;
+  color: var(--charcoal-2);
+  margin: 0.75rem 0 1rem;
+}
+.hard-rule-label {
+  display: block;
+  font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.2em;
+  color: var(--brass-deep); font-weight: 700; margin-bottom: 0.3rem;
+}
+
+.cal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+@media (max-width: 640px) { .cal-grid { grid-template-columns: 1fr; } }
+.cal-col { background: var(--cream-soft); border: 1px solid var(--line); border-radius: var(--radius); padding: 0.8rem; }
+.cal-head { font-family: var(--serif); font-size: 1.1rem; color: var(--charcoal); }
+.cal-day { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--brass); margin-bottom: 0.5rem; }
+.cal-col textarea { background: var(--white-warm); min-height: 90px; margin-bottom: 0; }
+
+/* — Home: exterior phase tracker — */
+.phase { display: flex; gap: 0.85rem; align-items: center; padding: 0.35rem 0; }
+.phase-num {
+  width: 34px; height: 34px; min-width: 34px;
+  border-radius: 50%;
+  border: 1.5px solid var(--brass);
+  color: var(--brass-deep);
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  display: flex; align-items: center; justify-content: center;
+}
+.phase-body { flex: 1; }
+.phase:has(input:checked) .phase-num { background: var(--brass); color: var(--white-warm); border-color: var(--brass); }

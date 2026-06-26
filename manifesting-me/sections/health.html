@@ -1,0 +1,111 @@
+<div class="section-head" style="text-align:center;margin-bottom:1.5rem">
+  <span class="eyebrow">The Body Is The Altar</span>
+  <h1>Health</h1>
+  <p style="color:var(--charcoal-2);max-width:42ch;margin:.3rem auto 0">Anti-inflammatory, high protein, high fiber, medium-low carb. Optimizing everything around what's genetic.</p>
+</div>
+
+<!-- ============ NUTRITION PROTOCOL (lab-driven) ============ -->
+<div class="card">
+  <span class="eyebrow">Nutrition Protocol</span>
+  <h3 style="margin:.1rem 0 .25rem">From your Function Health labs</h3>
+  <p class="card-sub">The levers you can actually move. Lp(a) is genetic — we optimize around it.</p>
+
+  <div class="note">
+    <span class="note-label">The Standard</span>
+    Clean, anti-inflammatory eating. High protein, high fiber, medium-low carb. Lactose intolerant — raw cheddar, feta, and A2 dairy are fine. No allergies.
+  </div>
+
+  <h4 style="margin:1.1rem 0 .4rem;color:var(--brass-deep)">This week's food levers</h4>
+  <div class="action"><input type="checkbox" data-persist="health.nut.fish" id="h_fish"><label for="h_fish"><strong>Fatty fish 2–3×</strong> — wild salmon or sardines. Omega-3 index is 4.6% (low); this is the single biggest lever.</label></div>
+  <div class="action"><input type="checkbox" data-persist="health.nut.fiber" id="h_fiber"><label for="h_fiber"><strong>Soluble fiber daily</strong> — oats, beans, chia, apples, psyllium. Targets ApoB 102 / LDL-P 1445.</label></div>
+  <div class="action"><input type="checkbox" data-persist="health.nut.satfat" id="h_satfat"><label for="h_satfat"><strong>Keep saturated fat low</strong> this week — lean proteins, olive oil over butter. ApoB lever.</label></div>
+  <div class="action"><input type="checkbox" data-persist="health.nut.iron" id="h_iron"><label for="h_iron"><strong>Heme iron + vitamin C pairing</strong> — ferritin is 28 (low). Red meat/poultry with citrus or peppers.</label></div>
+  <div class="action"><input type="checkbox" data-persist="health.nut.folate" id="h_folate"><label for="h_folate"><strong>Folate + B6 foods</strong> — leafy greens, lentils, salmon. Homocysteine 11.7 is creeping; B12 source was removed.</label></div>
+  <div class="action"><input type="checkbox" data-persist="health.nut.hydrate" id="h_hydrate"><label for="h_hydrate"><strong>Hydrate well</strong> — eGFR 71 is sliding. Water is the simplest kidney support.</label></div>
+
+  <hr class="brass-rule">
+  <h4 style="margin:0 0 .5rem;color:var(--brass-deep)">Your lab markers at a glance</h4>
+  <div class="lab-grid">
+    <div class="lab"><div class="lab-name">Lp(a)</div><div class="lab-val">288 <span>nmol/L</span></div><div class="lab-tag pill muted">Genetic · optimize around</div></div>
+    <div class="lab"><div class="lab-name">ApoB</div><div class="lab-val">102</div><div class="lab-tag pill">Lower sat fat ↑ fiber</div></div>
+    <div class="lab"><div class="lab-name">LDL particles</div><div class="lab-val">1445</div><div class="lab-tag pill">Soluble fiber</div></div>
+    <div class="lab"><div class="lab-name">Omega-3 index</div><div class="lab-val">4.6<span>%</span></div><div class="lab-tag pill">Below range · fatty fish</div></div>
+    <div class="lab"><div class="lab-name">Vitamin D</div><div class="lab-val">25</div><div class="lab-tag pill">Suboptimal · D+K2 + sun</div></div>
+    <div class="lab"><div class="lab-name">Ferritin</div><div class="lab-val">28</div><div class="lab-tag pill">Suboptimal · heme + vit C</div></div>
+    <div class="lab"><div class="lab-name">Homocysteine</div><div class="lab-val">11.7</div><div class="lab-tag pill">Creeping · folate, B6</div></div>
+    <div class="lab"><div class="lab-name">eGFR</div><div class="lab-val">71</div><div class="lab-tag pill muted">Monitor · hydrate</div></div>
+  </div>
+</div>
+
+<!-- ============ MOVEMENT LOG ============ -->
+<div class="card">
+  <span class="eyebrow">Daily Movement</span>
+  <h3 style="margin:.1rem 0 .75rem">Log it, then read the week</h3>
+  <div class="grid-2" style="gap:.6rem">
+    <div><label class="field-label">Today — what moved</label><input type="text" data-persist-field="health.move.today" placeholder="Walk, lift, yoga, stretch…"></div>
+    <div><label class="field-label">Minutes</label><input type="number" data-persist-field="health.move.min" placeholder="30"></div>
+  </div>
+  <label class="field-label">This week's movement summary</label>
+  <textarea data-persist-field="health.move.week" placeholder="Mon: 25m walk · Tue: rest · Wed: strength… (Projector note: rest days are part of the plan, not a failure.)"></textarea>
+  <div class="note"><span class="note-label">Projector reminder</span>Movement in bursts, then rest. Never wall-to-wall. Your energy is recognized when it's well-rested, not depleted.</div>
+</div>
+
+<!-- ============ SKINCARE (AM / PM) ============ -->
+<div class="card">
+  <span class="eyebrow">Skincare Routine</span>
+  <h3 style="margin:.1rem 0 .25rem">AM &amp; PM</h3>
+  <p class="card-sub">Adapalene Mon / Wed / Fri only. Protini every night.</p>
+  <div class="grid-2">
+    <div>
+      <h4 style="color:var(--brass-deep);margin-bottom:.4rem">☀ AM</h4>
+      <div class="action"><input type="checkbox" data-persist="health.skin.am.cleanse" id="s_amc"><label for="s_amc">Gentle cleanse</label></div>
+      <div class="action"><input type="checkbox" data-persist="health.skin.am.vitc" id="s_amv"><label for="s_amv">Antioxidant / vitamin C</label></div>
+      <div class="action"><input type="checkbox" data-persist="health.skin.am.moist" id="s_amm"><label for="s_amm">Moisturizer</label></div>
+      <div class="action"><input type="checkbox" data-persist="health.skin.am.spf" id="s_ams"><label for="s_ams">SPF — non-negotiable</label></div>
+    </div>
+    <div>
+      <h4 style="color:var(--brass-deep);margin-bottom:.4rem">☾ PM</h4>
+      <div class="action"><input type="checkbox" data-persist="health.skin.pm.cleanse" id="s_pmc"><label for="s_pmc">Cleanse / double cleanse</label></div>
+      <div class="action"><input type="checkbox" data-persist="health.skin.pm.adapalene" id="s_pma"><label for="s_pma">Adapalene <em>(Mon / Wed / Fri)</em></label></div>
+      <div class="action"><input type="checkbox" data-persist="health.skin.pm.protini" id="s_pmp"><label for="s_pmp">Protini peptide cream — nightly</label></div>
+      <div class="action"><input type="checkbox" data-persist="health.skin.pm.moist" id="s_pmm"><label for="s_pmm">Seal / night moisturizer</label></div>
+    </div>
+  </div>
+  <label class="field-label" style="margin-top:1rem">Regimen notes</label>
+  <textarea data-persist-field="health.skin.notes" placeholder="Full regimen, product order, what's working, reactions to watch…">AM: cleanse → vitamin C → moisturizer → SPF
+PM: cleanse → (adapalene M/W/F) → Protini nightly → seal
+On adapalene nights: thin layer, buffer if irritated, no other actives.</textarea>
+</div>
+
+<!-- ============ SUPPLEMENTS ============ -->
+<div class="card">
+  <span class="eyebrow">Supplements</span>
+  <h3 style="margin:.1rem 0 .75rem">Daily dosing</h3>
+  <div class="action"><input type="checkbox" data-persist="health.supp.d" id="sup_d"><label for="sup_d"><strong>Vitamin D + K2</strong> — with a fat-containing meal (D is 25, suboptimal)</label></div>
+  <div class="action"><input type="checkbox" data-persist="health.supp.omega" id="sup_o"><label for="sup_o"><strong>Omega-3</strong> — if not eating fish that day (index 4.6%)</label></div>
+  <div class="action"><input type="checkbox" data-persist="health.supp.b" id="sup_b"><label for="sup_b"><strong>B-complex (folate + B6)</strong> — homocysteine support, now off the Hers B12</label></div>
+  <div class="action"><input type="checkbox" data-persist="health.supp.iron" id="sup_i"><label for="sup_i"><strong>Iron</strong> (if directed) — with vitamin C, away from coffee/tea (ferritin 28)</label></div>
+  <label class="field-label" style="margin-top:1rem">Supplement notes / brands / timing</label>
+  <textarea data-persist-field="health.supp.notes" placeholder="Brands, doses, what to add or adjust at next labs…"></textarea>
+  <div class="note"><span class="note-label">Off-meds note</span>~3–4 weeks off all Hers meds (metformin, naltrexone/B12, bupropion). Next labs are your first clean baseline — don't muddy it.</div>
+</div>
+
+<!-- ============ LAB FOLLOW-UP ============ -->
+<div class="card">
+  <span class="eyebrow">Lab Follow-Up</span>
+  <h3 style="margin:.1rem 0 .5rem">Next Function Health panel</h3>
+  <div class="grid-2" style="gap:.6rem">
+    <div><label class="field-label">Target date (~6 months)</label><input type="date" data-persist-field="health.lab.date"></div>
+    <div><label class="field-label">Booked?</label>
+      <div class="action" style="border:none;padding-top:.6rem"><input type="checkbox" data-persist="health.lab.booked" id="lab_b"><label for="lab_b">Panel scheduled</label></div>
+    </div>
+  </div>
+  <h4 style="margin:.5rem 0 .4rem;color:var(--brass-deep)">Flag at next panel</h4>
+  <div class="action" style="cursor:default"><span style="color:var(--brass)">✦</span><label>eGFR (71, sliding) — confirm trend, not noise</label></div>
+  <div class="action" style="cursor:default"><span style="color:var(--brass)">✦</span><label>Homocysteine (11.7) — did folate/B6 bring it down?</label></div>
+  <div class="action" style="cursor:default"><span style="color:var(--brass)">✦</span><label>Omega-3 index — did 2–3×/week fish move it toward range?</label></div>
+  <div class="action" style="cursor:default"><span style="color:var(--brass)">✦</span><label>Ferritin &amp; vitamin D — recheck after supplementation</label></div>
+  <div class="action" style="cursor:default"><span style="color:var(--brass)">✦</span><label>First clean off-meds baseline — note what changed</label></div>
+  <label class="field-label" style="margin-top:1rem">Questions for the next panel</label>
+  <textarea data-persist-field="health.lab.questions" placeholder="What to ask, what to add to the order, symptoms to mention…"></textarea>
+</div>
