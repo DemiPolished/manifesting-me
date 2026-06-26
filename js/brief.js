@@ -18,6 +18,51 @@ function esc(s) {
     .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
+/* Moon glyph for a phase name — simple SVG, brass on cream */
+function moonGlyph(phase) {
+  const p = (phase || '').toLowerCase();
+  let lit = 0.5;            // fraction illuminated (visual)
+  let waning = false;
+  if (p.includes('new')) lit = 0.04;
+  else if (p.includes('full')) lit = 1;
+  else if (p.includes('first quarter')) { lit = 0.5; waning = false; }
+  else if (p.includes('last quarter')) { lit = 0.5; waning = true; }
+  else if (p.includes('waxing gibbous')) { lit = 0.8; waning = false; }
+  else if (p.includes('waning gibbous')) { lit = 0.8; waning = true; }
+  else if (p.includes('waxing')) { lit = 0.3; waning = false; }
+  else if (p.includes('waning')) { lit = 0.3; waning = true; }
+  const r = 9, cx = 11, cy = 11;
+  const uid = 'm' + Math.random().toString(36).slice(2, 8);
+  // Disc outline always; lit portion filled brass
+  const offset = (waning ? -1 : 1) * (1 - lit) * r; // shift the terminator
+  return `<svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true">
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="var(--cream-soft)" stroke="var(--taupe-deep)" stroke-width="1"/>
+    <clipPath id="${uid}"><circle cx="${cx}" cy="${cy}" r="${r}"/></clipPath>
+    <g clip-path="url(#${uid})">
+      <ellipse cx="${cx + offset}" cy="${cy}" rx="${r}" ry="${r}" fill="var(--brass)"/>
+    </g>
+  </svg>`;
+}
+
+function calendarStrip(days) {
+  if (!Array.isArray(days) || !days.length) return '';
+  const cells = days.map(d => {
+    const flag = d.flag ? `<span class="cal-flag">${esc(d.flag)}</span>` : '';
+    return `<div class="cal-cell${d.flag === 'Full Moon' || d.flag === 'New Moon' ? ' cal-cell-lunar' : ''}">
+      <div class="cal-dow">${esc(d.dow)}</div>
+      <div class="cal-date">${esc(d.date)}</div>
+      <div class="cal-moon">${moonGlyph(d.phase)}</div>
+      <div class="cal-phase">${esc(d.phase)}</div>
+      <div class="cal-sign">${esc(d.sign)}</div>
+      ${flag}
+    </div>`;
+  }).join('');
+  return `<div class="card cal-card">
+    <span class="eyebrow">Lunar Calendar</span>
+    <div class="cal-strip">${cells}</div>
+  </div>`;
+}
+
 function ringSVG(key) {
   const r = 22, c = 2 * Math.PI * r;
   return `<div class="ring-wrap" data-ring="${key}">
@@ -97,6 +142,8 @@ window.initBrief = async function () {
       <p style="color:var(--charcoal-2);max-width:38ch;margin:.2rem auto 0">${esc(data.toneNote || '')}</p>
       ${data.quarterTheme ? `<div class="note" style="text-align:left;margin-top:1.2rem"><span class="note-label">This Quarter</span>${esc(data.quarterTheme)}</div>` : ''}
     </div>
+
+    ${calendarStrip(data.days)}
 
     ${data.lunar ? `<div class="card">
       <span class="eyebrow">Lunar Weather</span>
