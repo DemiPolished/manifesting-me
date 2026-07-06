@@ -4,7 +4,7 @@
    so the latest Friday update shows when online.
    ============================================================ */
 
-const CACHE = 'manifesting-me-v1';
+const CACHE = 'manifesting-me-v2';
 const SHELL = [
   './',
   './index.html',
@@ -54,13 +54,24 @@ self.addEventListener('fetch', (e) => {
     return;
   }
 
-  // Cache-first for everything else (shell, fonts)
+  // Same-origin app files (html/js/css/sections): network-first with cache fallback.
+  // This guarantees the freshest code whenever online, and offline still works from cache.
+  if (url.origin === location.origin) {
+    e.respondWith(
+      fetch(e.request).then(res => {
+        if (e.request.method === 'GET' && res.status === 200) {
+          const copy = res.clone();
+          caches.open(CACHE).then(c => c.put(e.request, copy));
+        }
+        return res;
+      }).catch(() => caches.match(e.request))
+    );
+    return;
+  }
+
+  // Cross-origin (fonts, etc.): cache-first.
   e.respondWith(
     caches.match(e.request).then(cached => cached || fetch(e.request).then(res => {
-      if (e.request.method === 'GET' && res.status === 200 && url.origin === location.origin) {
-        const copy = res.clone();
-        caches.open(CACHE).then(c => c.put(e.request, copy));
-      }
       return res;
     }).catch(() => cached))
   );
