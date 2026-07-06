@@ -1,91 +1,91 @@
 {
-  "weekOf": "June 28 – July 4, 2026",
-  "generated": "2026-06-26",
-  "energyTone": "Harvest",
-  "toneNote": "Full Moon week. Receive, complete, integrate — then rest. This is a culmination, not a launch.",
+  "weekOf": "July 5 – 11, 2026",
+  "generated": "2026-07-03",
+  "energyTone": "Release",
+  "toneNote": "Waning moon, Last Quarter midweek. Clear, close, rest. Protect your energy — this is a reset, not a push.",
   "quarterTheme": "Personal Year 1 · Identity reset, planting seeds. Do not rush to harvest the wrong thing.",
   "days": [
-    { "dow": "Sun", "date": "28", "phase": "Waxing gibbous", "sign": "Sagittarius", "flag": "" },
-    { "dow": "Mon", "date": "29", "phase": "Full Moon", "sign": "Capricorn", "flag": "Full Moon" },
-    { "dow": "Tue", "date": "30", "phase": "Waning gibbous", "sign": "Capricorn", "flag": "Office" },
-    { "dow": "Wed", "date": "1", "phase": "Waning gibbous", "sign": "Aquarius", "flag": "" },
-    { "dow": "Thu", "date": "2", "phase": "Waning gibbous", "sign": "Aquarius", "flag": "Office" },
-    { "dow": "Fri", "date": "3", "phase": "Waning gibbous", "sign": "Pisces", "flag": "Shoot" },
-    { "dow": "Sat", "date": "4", "phase": "Last quarter approaching", "sign": "Pisces", "flag": "" }
+    { "dow": "Sun", "date": "5", "phase": "Waning gibbous", "sign": "Aries", "flag": "" },
+    { "dow": "Mon", "date": "6", "phase": "Waning gibbous", "sign": "Aries", "flag": "" },
+    { "dow": "Tue", "date": "7", "phase": "Last quarter", "sign": "Aries", "flag": "Last Qtr" },
+    { "dow": "Wed", "date": "8", "phase": "Waning crescent", "sign": "Taurus", "flag": "" },
+    { "dow": "Thu", "date": "9", "phase": "Waning crescent", "sign": "Taurus", "flag": "Office" },
+    { "dow": "Fri", "date": "10", "phase": "Waning crescent", "sign": "Gemini", "flag": "Shoot" },
+    { "dow": "Sat", "date": "11", "phase": "Waning crescent", "sign": "Gemini", "flag": "" }
   ],
   "lunar": {
-    "event": "Full Moon in Capricorn — Mon June 29, 7:57pm EDT (8°14′ Capricorn)",
-    "sign": "Moon waxes gibbous through Sagittarius into Capricorn, peaks Mon, then wanes through Aquarius–Pisces toward week's end",
-    "weather": "The Strawberry/Capricorn Full Moon lands in your 12th-house territory, opposite the Cancer Sun — a release point around structure, rest, and what runs behind the scenes. Honors your Jupiter-in-12th and Projector wiring: the work this week is integration and receiving, not output. By Fri–Sat the waning Pisces moon brushes your natal Moon/ASC — deeply restorative."
+    "event": "Last Quarter Moon in Aries — Tue July 7, 3:29pm EDT",
+    "sign": "Moon wanes from Aries early week, past the Last Quarter on Tue, into Taurus mid-week, then Gemini by Fri–Sat",
+    "weather": "A waning, release-toned week after last Monday's Full Moon. The Last Quarter in Aries on Tue is a decision point — what do you cut so the second half of the lunar month has room? The real moment is Wed–Thu: the Taurus moon crosses your natal North Node (11°12′) and Lilith (9°52′) in the 2nd house, right where Chiron is working. Expect feelings around worth, money, and receiving to surface — that's the healing, not a problem. Let them move through. Rest is the assignment; you're integrating, not initiating."
   },
   "transits": [
     {
       "flag": true,
-      "title": "Jupiter enters Leo — Mon June 29 / 30",
-      "note": "The big one. Jupiter ingresses Leo and almost immediately approaches your natal Venus (2°10′ Leo, 6th house) — first stop in a year-long march through your full Leo stellium. Expansion in love, visibility, and how your work is seen. It arrives the SAME day as the Full Moon. Don't force it; let it come to you (Projector). Name what you're ready to receive."
+      "title": "Jupiter conjunct your natal Venus — exact-ish this week",
+      "note": "Jupiter is now at ~2–3° Leo, sitting right on your natal Venus (2°10′ Leo, 6th house). This is the peak of the ingress you felt last week — expansion in love, in how your work is valued, in visibility. It's landing, not coming. Don't chase it or over-function to 'earn' it (Projector + waning moon both say receive). Name what you want and let it arrive."
     },
     {
       "flag": true,
-      "title": "Chiron in Taurus over Lilith + North Node (ongoing)",
-      "note": "Still the active long-arc transit, sitting on your 2nd-house self-worth points. Every receiving practice this week is Chiron work. The Full Moon gives it a release valve — let something around 'I have to earn it' go."
+      "title": "Taurus Moon over North Node + Lilith (Wed–Thu)",
+      "note": "The waning Taurus moon passes your 2nd-house self-worth points while Chiron sits nearby. Money/worth feelings may spike Wed–Thu. This is Chiron's long arc getting a monthly touch-point — meet it with a somatic practice, not analysis."
     },
     {
       "flag": false,
-      "title": "Sun in Cancer opposing the Capricorn Moon",
-      "note": "Home/family axis lit. A gentle pull between caretaking (you, the kids, the foster placements) and your own structure. Let dinner be simple this week."
+      "title": "Venus enters Virgo — Thu July 9",
+      "note": "Venus moves into Virgo, your Sun sign and 7th-house territory — a softer, discerning relational tone. Pairs with the Jupiter-on-Venus theme: partnership and how you value yourself are both lit. Note it; don't act from a wave peak."
     }
   ],
   "domains": {
     "health": {
       "ring": 3,
       "actions": [
-        "Fatty fish 2–3× this week (wild salmon or sardines) — Omega-3 index is low; this is the lever.",
-        "Adapalene Mon/Wed/Fri PM; Protini every night. Don't skip the Mon application before the busy week.",
-        "Take Vitamin D + K2 daily with a fat-containing meal; pair any iron-rich food with vitamin C."
+        "Rest is the protocol this week — waning moon + Projector. Protect the 9/9:30pm screens-off wind-down; bank sleep.",
+        "Keep omega-3 up: fatty fish 2–3× (wild salmon or sardines). Gentle movement only — walks, mobility, not intensity.",
+        "Adapalene Mon/Wed/Fri PM; Protini nightly. D + K2 with a fat-containing meal."
       ]
     },
     "abundance": {
       "ring": 3,
       "actions": [
-        "Somatic: hand on heart each morning — 'It's safe to receive more.' This week Jupiter is literally bringing more; your body needs to not flinch.",
-        "TBM/mindset: free-write the fear under 'what if I'm ordinary?' on Full Moon night. Let it be witnessed, not fixed.",
-        "Practical: name one number you're ready to receive and say it out loud once. Receiving starts with claiming."
+        "Somatic: hand on heart, especially Wed–Thu when the Taurus moon hits your worth points — 'It's safe to receive. I don't have to earn it.' Let the feeling move.",
+        "Waning-moon money work: this is a RELEASE week — clear, not draw. Free-write and burn one scarcity story ('I have to be exceptional to deserve it').",
+        "Practical: receive one thing without deflecting — a compliment, help, a rest window. Notice the flinch, stay anyway."
       ]
     },
     "business": {
       "ring": 3,
       "actions": [
-        "DemiPolished: plan the week's posts Mon — lead with personality/life-maxxing, ride the Jupiter-in-Leo visibility wave (but post from clarity, not a wave peak).",
-        "BGGG: plan Wed — stay on mission (toxins + Black health outcomes). One educational carousel, no lifestyle drift.",
-        "Communion Skin: spend 20 min on the working-title shortlist — early-stage naming only, no pressure to decide."
+        "Jupiter is on your Venus — visibility is favored, but it's a Release week: plan and refine, don't force a launch. Position, don't push.",
+        "DemiPolished: light plan Mon — personality / life-maxxing. BGGG: Wed — one on-mission piece (toxins → Black health outcomes), no lifestyle drift.",
+        "Communion Skin: 15 min on the working-title shortlist. Low stakes — you're incubating (Jupiter in your 12th likes solitude first)."
       ]
     },
     "love": {
       "ring": 2,
       "actions": [
-        "Jupiter is moving toward your Venus — note, don't chase. Journal: what does 'ready' feel like in my body?",
-        "One receptivity check-in midweek: am I open, or am I bracing?"
+        "Jupiter-on-Venus + Venus into Virgo (your Sun/7th) is the warmest partnership weather in a while. Stay receptive; let it come to you.",
+        "Journal: what would I have to release to let someone actually see me?"
       ]
     },
     "home": {
       "ring": 2,
       "actions": [
-        "One immediate-win exterior task (Phase 1) — small and finishable before the holiday weekend.",
-        "Water the cut-flower garden in the cool mornings; note which zinnias/dahlias are budding."
+        "Post-July-4th reset: one small finishing task, not a new project. Close a loop.",
+        "Water the cut-flower garden in the cool mornings; note first zinnia/dahlia cuttings."
       ]
     }
   },
   "content": {
-    "dp": ["Mon: plan DP captions + static posts", "Lead with personality / life-maxxing", "Schedule, don't post from a wave peak"],
-    "bggg": ["Wed: plan BGGG carousel", "Topic: one environmental toxin → Black health outcome", "Keep it educational, on-mission"],
-    "shoot": ["Fri: shoot + edit", "Both platforms must be planned first", "Light load — it's a rest-leaning Harvest week"]
+    "dp": ["Mon: light DP plan — captions + static", "Lead with personality / life-maxxing", "Refine over create — it's a rest week"],
+    "bggg": ["Wed: one BGGG piece", "Topic: one environmental toxin → Black health outcome", "Educational, on-mission, low-effort ok"],
+    "shoot": ["Fri: shoot + edit", "Both platforms planned first", "Keep the load light — waning week"]
   },
-  "founderHour": "Jupiter is about to walk across my Venus. If expansion in love, money, and visibility is already on its way to me — what would I have to believe about myself to let it land? (10 min, by hand, no editing.)",
-  "spiritual": "Full Moon release. Light a white candle Monday night. Christian prayer anchors it — a prayer of release and thanksgiving for what's already coming. Hoodoo seals it: petition for receiving without earning, written and burned or kept on the altar. Then rest. The Pisces moon at week's end is for stillness, not striving.",
-  "mantra": "It's already mine. I don't have to earn what's meant for me — I just have to let it in.",
+  "founderHour": "Jupiter is landing on my Venus while the moon wanes. If expansion is already here, what am I ready to release to make room for it — what old story about having to earn my worth can I set down this week? (10 min, by hand, no editing.)",
+  "spiritual": "Waning-moon release. This is the time to clear, not draw. Light a white or black candle for uncrossing/cleansing. Christian prayer anchors it — a prayer of release and surrender, handing over what you can't control. Hoodoo seals it: a simple cleansing (bath, floor wash, or petition to release a self-worth block), done on the waning moon. Then rest. Wed–Thu especially — be gentle with yourself as the Taurus moon stirs the worth wound.",
+  "mantra": "I'm not behind. I'm resting on purpose — and what's mine is still landing while I do.",
   "radar": [
-    "June 29 — Jupiter enters Leo: year-long expansion begins, conjuncts your Venus first. Ask about love/visibility when ready.",
+    "Now — Jupiter conjunct your natal Venus: the love/visibility/value expansion is peaking. Ask about it when ready.",
     "July 26 — North Node into Aquarius: activates your Aquarius Ascendant for ~18 months. Identity + visibility chapter. Eclipses follow.",
-    "Ongoing — Chiron in Taurus over your North Node + Lilith: the self-worth healing arc. Worth a dedicated session."
+    "Ongoing — Chiron in Taurus over your North Node + Lilith: the self-worth healing arc. The Taurus moon touches it monthly — worth a dedicated session."
   ]
 }
