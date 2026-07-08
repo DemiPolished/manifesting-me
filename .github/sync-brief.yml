@@ -1,0 +1,72 @@
+name: Sync brief from Notion
+
+# On-demand (Run workflow button) + weekly Friday + on any push to main
+# (so hand-edits to the repo also redeploy with the freshest Notion data).
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 12 * * 5"   # Fridays 12:00 UTC
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      weekof: ${{ steps.build.outputs.weekOf }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build brief.json from Notion
+        id: build
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+        run: python scripts/sync_brief.py
+      - uses: actions/configure-pages@v5
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "."
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+      - name: Verify LIVE publish matches the synced week
+        env:
+          WEEKOF: ${{ needs.build.outputs.weekof }}
+        run: |
+          python - "$WEEKOF" <<'PY'
+          import sys, json, time, urllib.request
+          want = sys.argv[1]
+          url = "https://demipolished.github.io/manifesting-me/data/brief.json"
+          for attempt in range(12):
+              try:
+                  with urllib.request.urlopen(url + "?t=%d" % int(time.time()), timeout=20) as r:
+                      live = json.load(r)
+                  if live.get("weekOf") == want:
+                      print("CONFIRMED live weekOf:", want)
+                      sys.exit(0)
+                  print("live weekOf=%r want=%r; retrying (%d/12)" % (live.get("weekOf"), want, attempt + 1))
+              except Exception as e:
+                  print("fetch retry (%d/12): %s" % (attempt + 1, e))
+              time.sleep(15)
+          sys.exit("FAILED: live weekOf never matched %r — deploy not confirmed." % want)
+          PY
