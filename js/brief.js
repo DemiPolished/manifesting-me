@@ -1,7 +1,8 @@
 /* ============================================================
-   brief.js — renders data/brief.json into the Brief view.
-   Interactive checkboxes persist; per-domain progress rings.
-   Brief data is refreshed every Friday by Cowork (writes brief.json).
+   brief.js — renders the weekly brief into the Brief view.
+   Current week comes from data/brief.json. A "past weeks" picker
+   (data/weeks/index.json + data/weeks/<key>.json) lets you browse
+   earlier weeks. Checkboxes persist per week.
    ============================================================ */
 
 const DOMAIN_META = {
@@ -18,11 +19,9 @@ function esc(s) {
     .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
-/* Moon glyph for a phase name — simple SVG, brass on cream */
 function moonGlyph(phase) {
   const p = (phase || '').toLowerCase();
-  let lit = 0.5;            // fraction illuminated (visual)
-  let waning = false;
+  let lit = 0.5, waning = false;
   if (p.includes('new')) lit = 0.04;
   else if (p.includes('full')) lit = 1;
   else if (p.includes('first quarter')) { lit = 0.5; waning = false; }
@@ -33,8 +32,7 @@ function moonGlyph(phase) {
   else if (p.includes('waning')) { lit = 0.3; waning = true; }
   const r = 9, cx = 11, cy = 11;
   const uid = 'm' + Math.random().toString(36).slice(2, 8);
-  // Disc outline always; lit portion filled brass
-  const offset = (waning ? -1 : 1) * (1 - lit) * r; // shift the terminator
+  const offset = (waning ? -1 : 1) * (1 - lit) * r;
   return `<svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true">
     <circle cx="${cx}" cy="${cy}" r="${r}" fill="var(--cream-soft)" stroke="var(--taupe-deep)" stroke-width="1"/>
     <clipPath id="${uid}"><circle cx="${cx}" cy="${cy}" r="${r}"/></clipPath>
@@ -95,20 +93,8 @@ function domainCard(key, data, weekKey) {
   </div>`;
 }
 
-window.initBrief = async function () {
-  const root = document.getElementById('brief-root');
-  if (!root) return;
-
-  let data;
-  try {
-    const res = await fetch('data/brief.json', { cache: 'no-cache' });
-    data = await res.json();
-  } catch (e) {
-    root.innerHTML = '<div class="card"><p>No brief loaded yet. Your Friday update will appear here once it syncs.</p></div>';
-    return;
-  }
-
-  // Unique key per week so a new week starts with fresh checkboxes
+/* Build the full brief HTML for a given brief object. */
+function briefBodyHTML(data, isPast) {
   const weekKey = (data.weekOf || 'week').replace(/[^a-z0-9]+/gi, '').toLowerCase();
 
   const transits = (data.transits || []).map(t =>
@@ -135,9 +121,9 @@ window.initBrief = async function () {
     `<div class="action" style="cursor:default"><span style="color:var(--brass)">✦</span><div style="flex:1;font-size:.88rem;color:var(--charcoal-2)">${esc(r)}</div></div>`
   ).join('');
 
-  root.innerHTML = `
+  return `
     <div class="card" style="text-align:center">
-      <span class="eyebrow">Week of ${esc(data.weekOf || '')}</span>
+      <span class="eyebrow">Week of ${esc(data.weekOf || '')}${isPast ? ' · archived' : ''}</span>
       <h1 style="font-size:2.6rem;margin:.1rem 0">${esc(data.energyTone || '')}</h1>
       <p style="color:var(--charcoal-2);max-width:38ch;margin:.2rem auto 0">${esc(data.toneNote || '')}</p>
       ${data.quarterTheme ? `<div class="note" style="text-align:left;margin-top:1.2rem"><span class="note-label">This Quarter</span>${esc(data.quarterTheme)}</div>` : ''}
@@ -177,8 +163,66 @@ window.initBrief = async function () {
     ${radar ? `<div class="card"><span class="eyebrow">On Your Radar</span>${radar}
       <p style="font-size:.78rem;color:var(--charcoal-3);margin-top:.6rem">Add these to your agenda. Ask about them when you're ready.</p></div>` : ''}
   `;
+}
 
-  // Wire persistence + rings for the freshly injected DOM
-  bindPersistentChecks(root);
-  if (window.updateAllRings) updateAllRings(root);
+async function fetchJSON(url) {
+  const res = await fetch(url, { cache: 'no-cache' });
+  if (!res.ok) throw new Error(res.status);
+  return res.json();
+}
+
+/* Render a brief object into #brief-body and wire persistence + rings. */
+function paintBrief(data, isPast) {
+  const body = document.getElementById('brief-body');
+  if (!body) return;
+  body.innerHTML = briefBodyHTML(data, isPast);
+  bindPersistentChecks(body);
+  if (window.updateAllRings) updateAllRings(body);
+}
+
+window.initBrief = async function () {
+  const root = document.getElementById('brief-root');
+  if (!root) return;
+
+  let current;
+  try {
+    current = await fetchJSON('data/brief.json');
+  } catch (e) {
+    root.innerHTML = '<div class="card"><p>No brief loaded yet. Your Friday update will appear here once it syncs.</p></div>';
+    return;
+  }
+
+  // Try the archive index (may not exist on older deploys)
+  let index = [];
+  try { index = await fetchJSON('data/weeks/index.json'); } catch (e) { index = []; }
+
+  // Picker only if there's more than one week of history
+  let pickerHTML = '';
+  if (Array.isArray(index) && index.length > 1) {
+    const opts = index.map(w =>
+      `<option value="${esc(w.file)}"${w.current ? ' selected' : ''}>${esc(w.weekOf)}${w.current ? ' — current' : ''}</option>`
+    ).join('');
+    pickerHTML = `<div class="no-print" style="display:flex;align-items:center;gap:.6rem;margin:0 0 1rem">
+      <label for="week-select" style="font-size:.62rem;text-transform:uppercase;letter-spacing:.2em;color:var(--brass-deep);font-weight:600">Week</label>
+      <select id="week-select" style="max-width:280px;margin-bottom:0">${opts}</select>
+    </div>`;
+  }
+
+  root.innerHTML = pickerHTML + '<div id="brief-body"></div>';
+  paintBrief(current, false);
+
+  const sel = document.getElementById('week-select');
+  if (sel) {
+    sel.addEventListener('change', async () => {
+      const cur = index.find(w => w.current);
+      const isCurrent = cur && sel.value === cur.file;
+      try {
+        const data = isCurrent ? current : await fetchJSON('data/weeks/' + sel.value);
+        paintBrief(data, !isCurrent);
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      } catch (e) {
+        // leave current view if a past file fails to load
+      }
+    });
+  }
 };
