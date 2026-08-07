@@ -479,6 +479,20 @@ label.field-label {
 /* Standing annual portal/gate dates (Lion's Gate 8/8, 11:11, …) */
 .cal-flag-event { background: var(--brass-deep); }
 .cal-cell-event { border-color: var(--brass-deep); }
+/* Portal badge is a button — tap to open the day's ritual */
+button.cal-flag {
+  border: 0; cursor: pointer; font-family: inherit;
+  text-decoration: underline dotted; text-underline-offset: 2px;
+}
+.cal-ritual {
+  margin-top: 0.9rem; padding: 0.8rem 1rem;
+  border-left: 2px solid var(--brass-deep);
+  background: var(--cream-soft);
+}
+.cal-ritual .eyebrow { display: block; margin-bottom: 0.4rem; }
+.cal-ritual p { font-size: 0.85rem; line-height: 1.65; color: var(--charcoal-2); margin: 0 0 0.6rem; }
+.cal-ritual p:last-child { margin-bottom: 0; }
+.cal-ritual[hidden] { display: none; }
 /* On narrow phones, let the strip scroll rather than crush 7 columns */
 @media (max-width: 560px) {
   .cal-strip {

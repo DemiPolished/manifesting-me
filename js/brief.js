@@ -44,11 +44,33 @@ function moonGlyph(phase) {
 
 /* Standing cosmic dates that repeat every year, rendered client-side so
    they never depend on the weekly pipeline. Key is "month-day". Add new
-   annual dates (portals, gates) here in one place. */
+   annual dates (portals, gates) here in one place — label shows on the
+   calendar day; ritual paragraphs expand when the badge is tapped.
+   Practice names mentioned in ritual text (SATS, Scovel Shinn decree,
+   hand on heart) get linked to their guides by data/practices.js. */
 const ANNUAL_EVENTS = {
-  '8-8':   "Lion's Gate 8/8",
-  '11-11': '11:11 Portal',
-  '12-12': '12:12 Portal'
+  '8-8': {
+    label: "Lion's Gate 8/8",
+    ritual: [
+      "If this week said no petitions, keep it that way. A petition would be redundant today — the gate is already open, and everything you asked for during the year gets room to move. Your job is to receive it without grabbing.",
+      "Morning: stand in the sun for a few minutes, hand on heart, and say thank you like it already happened. Out loud is better. Christian prayer anchors it.",
+      "Night: SATS. Pick one scene that only exists on the other side of the wish and fall asleep inside it."
+    ]
+  },
+  '11-11': {
+    label: '11:11 Portal',
+    ritual: [
+      "11:11 is a mirror. It hands back what you are already being, so trying hard today is the wrong move. No petitions here either.",
+      "When the mirror hour catches you, stop for one breath and speak one Scovel Shinn decree out loud. One line, present tense, then let it go and get back to your day. Gratitude seals it."
+    ]
+  },
+  '12-12': {
+    label: '12:12 Portal',
+    ritual: [
+      "The year's completion gate. You are not asking for anything today; you are taking inventory.",
+      "Hand on heart, out loud, name what actually came in this year. Answered prayers count even when they arrived looking different than you ordered. Stop when you run out, not before."
+    ]
+  }
 };
 
 const MONTH_NUMS = {
@@ -72,9 +94,12 @@ function calendarStrip(days, weekOf) {
     const dateNum = parseInt(d.date, 10) || 0;
     if (month && prevDate && dateNum && dateNum < prevDate) month = month % 12 + 1;
     if (dateNum) prevDate = dateNum;
-    const annual = month && dateNum ? ANNUAL_EVENTS[month + '-' + dateNum] : '';
+    const portalKey = month && dateNum ? month + '-' + dateNum : '';
+    const annual = portalKey ? ANNUAL_EVENTS[portalKey] : null;
     const flag = d.flag ? `<span class="cal-flag">${esc(d.flag)}</span>` : '';
-    const portal = annual ? `<span class="cal-flag cal-flag-event">${esc(annual)}</span>` : '';
+    const portal = annual
+      ? `<button type="button" class="cal-flag cal-flag-event" data-portal="${portalKey}" aria-expanded="false">${esc(annual.label)}</button>`
+      : '';
     const lunar = d.flag === 'Full Moon' || d.flag === 'New Moon';
     return `<div class="cal-cell${lunar ? ' cal-cell-lunar' : ''}${annual ? ' cal-cell-event' : ''}">
       <div class="cal-dow">${esc(d.dow)}</div>
@@ -91,6 +116,30 @@ function calendarStrip(days, weekOf) {
     <div class="cal-strip">${cells}</div>
   </div>`;
 }
+
+/* Tap a portal badge → that day's ritual expands under the calendar.
+   Delegated so it survives week-switch repaints; ritual text is only
+   injected on first open, so the practice-guide scanner never marks a
+   mention hidden inside an unopened panel as a tab's first mention. */
+document.addEventListener('click', (e) => {
+  const btn = e.target.closest('button[data-portal]');
+  if (!btn) return;
+  const info = ANNUAL_EVENTS[btn.dataset.portal];
+  const card = btn.closest('.cal-card');
+  if (!info || !card) return;
+  let panel = card.querySelector(`.cal-ritual[data-portal="${btn.dataset.portal}"]`);
+  if (!panel) {
+    panel = document.createElement('div');
+    panel.className = 'cal-ritual';
+    panel.dataset.portal = btn.dataset.portal;
+    panel.innerHTML = `<span class="eyebrow">${esc(info.label)} — what to do</span>` +
+      info.ritual.map(p => `<p>${esc(p)}</p>`).join('');
+    card.appendChild(panel);
+  } else {
+    panel.hidden = !panel.hidden;
+  }
+  btn.setAttribute('aria-expanded', String(!panel.hidden));
+});
 
 function ringSVG(key) {
   const r = 22, c = 2 * Math.PI * r;
