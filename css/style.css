@@ -476,6 +476,9 @@ label.field-label {
   background: var(--brass); color: var(--white-warm);
   padding: 0.1rem 0.3rem; border-radius: 10px;
 }
+/* Standing annual portal/gate dates (Lion's Gate 8/8, 11:11, …) */
+.cal-flag-event { background: var(--brass-deep); }
+.cal-cell-event { border-color: var(--brass-deep); }
 /* On narrow phones, let the strip scroll rather than crush 7 columns */
 @media (max-width: 560px) {
   .cal-strip {

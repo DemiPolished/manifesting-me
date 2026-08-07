@@ -42,17 +42,48 @@ function moonGlyph(phase) {
   </svg>`;
 }
 
-function calendarStrip(days) {
+/* Standing cosmic dates that repeat every year, rendered client-side so
+   they never depend on the weekly pipeline. Key is "month-day". Add new
+   annual dates (portals, gates) here in one place. */
+const ANNUAL_EVENTS = {
+  '8-8':   "Lion's Gate 8/8",
+  '11-11': '11:11 Portal',
+  '12-12': '12:12 Portal'
+};
+
+const MONTH_NUMS = {
+  january: 1, february: 2, march: 3, april: 4, may: 5, june: 6,
+  july: 7, august: 8, september: 9, october: 10, november: 11, december: 12
+};
+
+/* The days array only carries the day-of-month, so the month comes from the
+   weekOf label (e.g. "August 9 – August 15, 2026"). */
+function startMonthOf(weekOf) {
+  const m = String(weekOf || '').toLowerCase()
+    .match(/january|february|march|april|may|june|july|august|september|october|november|december/);
+  return m ? MONTH_NUMS[m[0]] : 0;
+}
+
+function calendarStrip(days, weekOf) {
   if (!Array.isArray(days) || !days.length) return '';
+  let month = startMonthOf(weekOf);
+  let prevDate = 0;
   const cells = days.map(d => {
+    const dateNum = parseInt(d.date, 10) || 0;
+    if (month && prevDate && dateNum && dateNum < prevDate) month = month % 12 + 1;
+    if (dateNum) prevDate = dateNum;
+    const annual = month && dateNum ? ANNUAL_EVENTS[month + '-' + dateNum] : '';
     const flag = d.flag ? `<span class="cal-flag">${esc(d.flag)}</span>` : '';
-    return `<div class="cal-cell${d.flag === 'Full Moon' || d.flag === 'New Moon' ? ' cal-cell-lunar' : ''}">
+    const portal = annual ? `<span class="cal-flag cal-flag-event">${esc(annual)}</span>` : '';
+    const lunar = d.flag === 'Full Moon' || d.flag === 'New Moon';
+    return `<div class="cal-cell${lunar ? ' cal-cell-lunar' : ''}${annual ? ' cal-cell-event' : ''}">
       <div class="cal-dow">${esc(d.dow)}</div>
       <div class="cal-date">${esc(d.date)}</div>
       <div class="cal-moon">${moonGlyph(d.phase)}</div>
       <div class="cal-phase">${esc(d.phase)}</div>
       <div class="cal-sign">${esc(d.sign)}</div>
       ${flag}
+      ${portal}
     </div>`;
   }).join('');
   return `<div class="card cal-card">
@@ -129,7 +160,7 @@ function briefBodyHTML(data, isPast) {
       ${data.quarterTheme ? `<div class="note" style="text-align:left;margin-top:1.2rem"><span class="note-label">This Quarter</span>${esc(data.quarterTheme)}</div>` : ''}
     </div>
 
-    ${calendarStrip(data.days)}
+    ${calendarStrip(data.days, data.weekOf)}
 
     ${data.lunar ? `<div class="card">
       <span class="eyebrow">Lunar Weather</span>
