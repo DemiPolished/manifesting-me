@@ -5,7 +5,7 @@ name: Sync brief from Notion
 on:
   workflow_dispatch:
   schedule:
-    - cron: "016 * * 5"   # Fridays 12:00 UTC
+    - cron: "0 16 * * 5"   # Fridays 12:00 UTC
   push:
     branches: [main]
 
